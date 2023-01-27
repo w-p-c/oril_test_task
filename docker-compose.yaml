@@ -1,0 +1,29 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      - redis
+    env_file:
+      - ./.env
+    networks:
+      - node-app-network
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+    volumes:
+      - type: bind
+        source: ./
+        target: /usr/src/app
+
+  redis:
+    image: redis:7.0.8
+    container_name: node-app-redis
+    networks:
+      - node-app-network
+    expose:
+      - 6379
+
+networks:
+  node-app-network:
+    driver: bridge

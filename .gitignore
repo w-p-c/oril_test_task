@@ -1,0 +1,6 @@
+/node_modules
+
+# purposely included for demo purposes
+# /.env
+
+/dist
