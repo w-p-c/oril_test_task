@@ -18,10 +18,7 @@ const handler: Middleware<Koa.DefaultState, KoaContext, ResponseBody> = async (
   const isJobCompleted = await job.isCompleted();
 
   if (!isJobCompleted) {
-    ctx.response.status = 200;
-    ctx.response.body = {
-      error: `Job ${jobId} is still being processed`,
-    };
+    ctx.response.status = 204;
 
     return;
   }
